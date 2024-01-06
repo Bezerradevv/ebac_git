@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #meuFormulario {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h1{
+            font-size: 14px;
+            font-weight: normal;
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="meuFormulario">
+        <h2>Requisição de compra</h2>
+        <img src="https://adrianomoveiseeletros.com.br/adm/wp-content/uploads/2023/02/celular-samsung-a23-1.png" alt="Imagem do Item" />
+        <h1>Item: Telefone Modelo EBAC</h1>
+        
+        <label for="numeroA">Unidades vendidas hoje</label>
+        <input type="number" id="numeroA" name="numeroA" required readonly>
+
+        <label for="numeroB">Quantidade de itens para repor estoque</label>
+        <input type="number" id="numeroB" name="numeroB" required>
+
+        <button type="button" onclick="gerarNumero()">Gerar relatório de itens vendidos</button>
+        <button type="button" onclick="validarFormulario()">Validar</button>
+    </form>
+
+    <script>
+        function gerarNumero() {
+            var numeroGerado = Math.floor(Math.random() * 20) + 1; // Gera um número aleatório de 1 a ++
+            document.getElementById('numeroA').value = numeroGerado;
+        }
+
+        function validarFormulario() {
+            var numeroA = parseInt(document.getElementById('numeroA').value);
+            var numeroB = parseInt(document.getElementById('numeroB').value);
+
+            if (numeroB > numeroA) {
+                alert("Requisição de compra enviada com sucesso. Obrigado!");
+            } else {
+                alert("Quantidade invalida! Você precisa realizar um pedido maior que " +numeroA+ " unidades, para repor o estoque");
+            }
+        }
+    </script>
+
+</body>
+</html>

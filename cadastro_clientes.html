@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle</title>
+    <style>
+
+        /*ACRESCENTAR O BOTAR DE ADICIONAR CLIENTES */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-bottom: 0;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #form-cliente{
+           margin-right: 10px;
+
+        }
+    </style>
+</head>
+<body>
+
+    
+        <form id="form-cliente">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+    
+            <label for="telefone">Telefone:</label>
+            <input type="tel" name="telefone" required>
+    
+            <label for="cnpj">CNPJ:</label>
+            <input type="number" name="cnpj" required>
+
+            <label for="setor">Setor:</label>
+            <input type="text" name="setor" required>
+            
+            <label for="foto">Foto de Perfil (JPG ou PNG):</label>
+            <input type="file" name="foto" accept=".jpg, .jpeg, .png" required>
+
+
+    
+            <input type="submit" value="Cadastrar Cliente">
+        </form>
+
+     
+    <div id="clientes">
+        <h2>Clientes Cadastrados:</h2>
+        <table id="tabela-clientes">
+            <tr>
+                <th>Logo</th>
+                <th>Nome da Empresa</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>CNPJ</th>
+                <th>Setor</th>
+            </tr>
+        </table>
+    </div>
+    
+
+    <script>
+        document.getElementById('form-cliente').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementsByName('nome')[0].value;
+            const email = document.getElementsByName('email')[0].value;
+            const telefone = document.getElementsByName('telefone')[0].value;
+            const cnpj = document.getElementsByName('cnpj')[0].value;
+            const setor = document.getElementsByName('setor')[0].value;
+
+            const inputFoto = document.getElementsByName('foto')[0];
+            const foto = inputFoto.files.length > 0 ? URL.createObjectURL(inputFoto.files[0]) : '';
+
+            const tabelaClientes = document.getElementById('tabela-clientes');
+            const newRow = tabelaClientes.insertRow(-1);
+
+            const fotoCell = newRow.insertCell(0);
+            const nomeCell = newRow.insertCell(1);
+            const emailCell = newRow.insertCell(2);
+            const telefoneCell = newRow.insertCell(3);
+            const cnpjCell = newRow.insertCell(4);
+            const setorCell = newRow.insertCell(5);
+
+            fotoCell.innerHTML = `<img src="${foto}" alt="${nome}" style="max-width: 50px; max-height: 50px; border-radius:50%">`;
+            nomeCell.textContent = nome;
+            emailCell.textContent = email;
+            telefoneCell.textContent = telefone;
+            cnpjCell.textContent = cnpj;
+            setorCell.textContent = setor;
+
+            // Limpa os campos do formulário após cadastrar
+            document.getElementById('form-cliente').reset();
+        });
+    </script>
+
+</body>
+</html>

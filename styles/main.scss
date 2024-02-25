@@ -1,0 +1,71 @@
+@use 'variaveis';
+
+body {
+    font-family: variaveis.$fontFamily;
+    background-color: variaveis.$corBackground;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: variaveis.$corHeaderBg;
+    color: variaveis.$corHeaderText;
+    padding: variaveis.$espacamentoHeader;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: variaveis.$maxLarguraContainer;
+    margin: 0 auto;
+    padding: variaveis.$espacamentoContainer;
+}
+
+.logo {
+    font-size: variaveis.$tamanhoFonteLogo;
+    font-weight: variaveis.$pesoFonteLogo;
+}
+
+.navbar {
+    display: flex;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: variaveis.$espacamentoNav;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: variaveis.$corLinkNav;
+    font-size: 18px;
+    transition: variaveis.$transicaoLinkNav;
+}
+
+.nav-item a:hover {
+    color: variaveis.$corLinkHoverNav;
+}
+
+main {
+    max-width: variaveis.$maxLarguraMain;
+    margin: variaveis.$espacamentoMain auto;
+    padding: variaveis.$espacamentoMain;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: variaveis.$corTextoH1;
+    margin-bottom: 10px;
+}
+
+p {
+    color: variaveis.$corTextoP;
+    line-height: variaveis.$lineHeightP;
+}

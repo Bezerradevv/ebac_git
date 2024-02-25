@@ -1,26 +1,34 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const imagemin = require('gulp-imagemin');
-const uglify = require('gulp-uglify');
+const gulp= require('gulp');
+const sass= require('gulp-sass')(require('sass'));
+const sourcemaps= require('gulp-sourcemaps');
+const uglify= require('gulp-uglify');
+const imagemin= require('gulp-imagemin');
 
-// Tarefas individuais
-function compileSass() {
-    return gulp.src('src/styles/**/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('dist/css'));
+function comprimeImages() {
+    return gulp.src('./source/images/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./build.images'))
 }
 
-function compressImages() {
-    return gulp.src('src/images/**/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('dist/images'));
+function comprimeJavaScript(){
+    return gulp.src('./source/scripts/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./build/scripts'))
 }
 
-function compressJS() {
-    return gulp.src('src/scripts/**/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/js'));
+function compilaSass(){
+    return gulp.src('./source/styles/main.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+        outputStyle: 'compressed'
+    }))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('./build/styles'));
 }
 
-// Tarefa em paralelo
-exports.default = gulp.parallel(compileSass, compressImages, compressJS);
+
+exports.default = function(){
+    gulp.watch('./source/style/*.scss', {ignoreInitial: false }, gulp.series(compilaSass));
+    gulp.watch('./source/style/*.scss', {ignoreInitial: false }, gulp.series(comprimeJavaScript));
+    gulp.watch('./source/style/*.scss', {ignoreInitial: false }, gulp.series(comprimeImages));
+}

@@ -1,0 +1,75 @@
+@import "variaveis.less";
+@import "maps.less";
+
+@breakPointMobile: ~ "(max-width: 767px)";
+.paddingZero{
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #colors[colorWhite];
+    margin: 0;
+    .paddingZero(); //mixins
+}
+
+.container {
+    max-width: 800PX;
+    margin: 0 auto;
+    padding: 20px;
+    
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+.links {
+    list-style: none;
+    .paddingZero(); //mixins
+}
+
+.links li {
+    margin-bottom: 10px;
+
+}
+
+.links li a {
+    display: block;
+    padding: 10px;
+    background-color: #colors[colorWhite];
+    border: 1px solid #colors[colorPink];
+    text-decoration: none;
+    
+
+    border-radius: 40px;
+    text-align: center;
+    @media @breakPointMobile{
+        border-color: #colors[colorGreen];
+    }
+}
+.links img {
+    filter: brightness(0.2); 
+}
+
+.links li a:hover {
+    background-color: #colors[colorPink];
+    filter: brightness(1);
+
+    @media @breakPointMobile{
+        background-color: #colors[colorGreen];
+    }
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.img-perfil{
+    width: 100px;
+}
+

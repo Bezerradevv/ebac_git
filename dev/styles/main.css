@@ -1,0 +1,32 @@
+body {
+  font-family: "Lobster", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+#resultado {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: blue;
+}
+.container {
+  text-align: center;
+}
+#max-number {
+  width: 50px;
+  margin: 0 10px;
+}
+#sortear-btn {
+  padding: 10px 20px;
+  background-color: #4acd4a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#sortear-btn:hover {
+  background-color: #45a049;
+}
